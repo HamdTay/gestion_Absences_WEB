@@ -12,7 +12,7 @@ public class LoginController {
 	@Autowired
 	PasswordEncoder pd;
 	
-	@GetMapping
+	@GetMapping("/login")
 	public String showLogin() {
 		return "login";
 	}
