@@ -17,4 +17,26 @@ public class LoginController {
 		return "login";
 	}
 	
+	@GetMapping("/access-denied")
+	public String showAccessDenied() {
+
+		return "access-denied";
+
+	}
+
+	@GetMapping("/user/showUserHome")
+	public String showUserHomePage() {
+
+		return "user/userHomePage";
+
+	}
+
+	@GetMapping("/admin/showAdminHome")
+	public String showAdminHome() {
+
+		return "admin/adminHome";
+
+	}
+
+	
 }
