@@ -34,7 +34,7 @@ public class LoginController {
 	@GetMapping("/admin/showAdminHome")
 	public String showAdminHome() {
 
-		return "admin/adminHome";
+		return "admin/userform";
 
 	}
 

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,50 +17,69 @@
         <link rel="icon" type="image/png" href="<c:url value="resources/images/icon.png" />"/>
         <title> ENSAH - Absence </title>
         <!-- CSS Bootstrap -->
-        <link href="<c:url value="resources/css/bootstrap.min.css" />" rel="stylesheet">       
+        <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">       
         <!-- JSBootstrap -->
-        <script src="<c:url value="resources/js/bootstrap.min.js" />"></script>    
+        <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>    
         <!-- CSS Semantic UI -->
-        <link href="<c:url value="resources/assets/semanticUI/semantic.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/assets/semanticUI/semantic.css" />" rel="stylesheet">
         <!-- JS Semantic UI -->
-        <script href="<c:url value="resources/assets/semanticUI/semantic.min.js" />"></script>
+        <script href="<c:url value="/resources/assets/semanticUI/semantic.min.js" />"></script>
         <!-- CSS Font Awesome -->
-        <link href="<c:url value="resources/assets/font-awesome/css/all.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/assets/font-awesome/css/all.css" />" rel="stylesheet">
         <!-- jQuery -->
-        <script src="<c:url value="resources/js/jQuery.js" />"></script>
+        <script src="<c:url value="/resources/js/jQuery.js" />"></script>
         <!-- DataTable -->
-        <link href="<c:url value="resources/assets/datatable/datatables.min.css" />" rel="stylesheet">
-        <script src="<c:url value="resources/assets/datatable/datatables.min.js" />"></script>
+	    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+	
+	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+	    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
+	    <script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+	    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
+	    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script> 
+	
+	
+	    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+	    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+        
+<%--         <link href="<c:url value="/resources/assets/datatable/datatables.min.css" />" rel="stylesheet"> --%>
+<%--         <script src="<c:url value="/resources/assets/datatable/datatables.min.js" />"></script> --%>
         <!--Alerts -->      
             <!-- Sweet -->
-        <script src="<c:url value="resources/assets/alerts/sweet.js" />"></script>
+        <script src="<c:url value="/resources/assets/alerts/sweet.js" />"></script>
             <!-- Bootbox -->
-        <script src="<c:url value="resources/assets/alerts/bootbox.js" />"></script>   
+        <script src="<c:url value="/resources/assets/alerts/bootbox.js" />"></script>   
             <!-- Toastr -->
-        <link href="<c:url value="resources/assets/alerts/toastr.css" />" rel="stylesheet">
-        <script src="<c:url value="resources/assets/alerts/toastr.js" />"></script>
+        <link href="<c:url value="/resources/assets/alerts/toastr.css" />" rel="stylesheet">
+        <script src="<c:url value="/resources/assets/alerts/toastr.js" />"></script>
          <!-- JS Globally -->
-        <script src="<c:url value="resources/js/preglobal.js" />"></script>
+<%--         <script src="<c:url value="/resources/js/preglobal.js" />"></script> --%>
         <!-- Selectize CSS -->
-        <link href="<c:url value="resources/css/selectize.css" />" rel="stylesheet"> 
+        <link href="<c:url value="/resources/css/selectize.css" />" rel="stylesheet"> 
         <!-- Selectize JS -->
-        <script src="<c:url value="resources/js/selectize.js" />"></script>
+        <script src="<c:url value="/resources/js/selectize.js" />"></script>
         <!-- Video js CSS -->
-        <link href="<c:url value="resources/css/videojs.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/css/videojs.css" />" rel="stylesheet">
         <!-- Uploader JS -->
-        <script src="<c:url value="resources/js/uploader.js" />"></script>   
+        <script src="<c:url value="/resources/js/uploader.js" />"></script>   
         <!-- Material Icon CSS -->
-        <link rel="stylesheet" href="<c:url value="resources/css/materialicons.css" />" />       
+        <link rel="stylesheet" href="<c:url value="/resources/css/materialicons.css" />" />       
         <!-- App Pure CSS -->
-        <link rel="stylesheet" href="<c:url value="resources/css/app.css" />" />     
+        <link rel="stylesheet" href="<c:url value="/resources/css/app.css" />" />       
+        
+        
         <!-- Main Pure CSS -->
-        <link href="<c:url value="resources/css/main.css" />" rel="stylesheet">
-        <script src="<c:url value="resources/js/chartjs.js" />"></script>
-		<link href="<c:url value="resources/cssTeam/Omar.css" />" rel="stylesheet">
-        <link href="<c:url value="resources/cssTeam/Tayeb.css" />" rel="stylesheet">
-        <link href="<c:url value="resources/cssTeam/Mohcine.css" />" rel="stylesheet">
-        <link href="<c:url value="resources/cssTeam/Amine.css" />" rel="stylesheet">
-        <link href="<c:url value="resources/cssTeam/Redouane.css" />" rel="stylesheet">
+        <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />" />       
+        <script src="<c:url value="/resources/js/chartjs.js" />"></script>
+		<link href="<c:url value="/resources/cssTeam/Omar.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/cssTeam/Tayeb.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/cssTeam/Mohcine.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/cssTeam/Amine.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/cssTeam/Redouane.css" />" rel="stylesheet">
     <style>
         *{
             margin:0;

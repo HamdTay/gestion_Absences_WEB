@@ -1,7 +1,9 @@
 package com.ensah.web.models;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 public class UserModel {
 
@@ -13,24 +15,31 @@ public class UserModel {
 	
 	private Long idUtilisateur;
 
-	@NotBlank(message = "This field is required")
+	@NotBlank(message = "Le nom est requis")
 	private String nom;
 
-	@NotBlank(message = "This field is required")
+	@NotBlank(message = "Le prenom est requis")
 	private String prenom;
 	
-	@NotBlank(message = "This field is required")
+	@NotBlank(message = "L'ID nationale est requis")
+	@Pattern(regexp = "^[A-Z]{2}[0-9]{8}", message= "L'ID national doit être composé de 2 lettres majuscules suivies de 8 chiffres")
 	private String cin;
-
+	
+	@Pattern(regexp = "^[A-Z]{1}[0-9]{9}", message= "L'ID d'étudiant doit être composé d'une lettre suivies de 9 chiffres")
 	private String cne;
 	
-	@NotEmpty
+	@Email(message = "l'email doit être valid")
+	@NotBlank(message="L'email est requis")
 	private String email;
 
+    @NotBlank(message = "Le numero de telephone est requis")
+    @Pattern(regexp = "^[0-9]{9}", message = "Le numero de telephone doit être composé de 9 chiffres")
 	private String telephone;
 
+	@NotBlank(message = "Le nom arabe est requis")
 	private String nomArabe;
 
+	@NotBlank(message = "Le prenom arabe est requis")
 	private String prenomArabe;
 
 	private String photo;

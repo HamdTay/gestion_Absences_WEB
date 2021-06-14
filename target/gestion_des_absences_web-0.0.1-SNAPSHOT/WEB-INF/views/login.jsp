@@ -13,11 +13,11 @@
 
 <body>	
 	<div>
-		<form action="${pageContext.request.contextPath}/Authenticate" method="POST">
+		<f:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
 			
 			<div>
 				<label for="username">Username </label>
-				<input type="text" name="user"  />
+				<input type="text" name="username"  />
 			</div>
 			
 			<div>
@@ -30,7 +30,7 @@
 				<input type="reset" value="Annuler"/>
 			</div>
 			
-		</form>	
+		</f:form>	
 	</div>
 
 

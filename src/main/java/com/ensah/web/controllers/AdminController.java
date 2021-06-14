@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ensah.web.models.UserModel;
 
 @Controller
-//@RequestMapping("admin")
+@RequestMapping("admin")
 public class AdminController {
 
 	@GetMapping("addUsersForm")
