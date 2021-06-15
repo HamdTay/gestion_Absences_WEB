@@ -36,3 +36,4 @@
 			width: 100%!important;}
 		}
 	@media (min-width: 900px){.dataTables_length{position: relative; top: 35px; width: 50%;}}
+.LoginContainer{width: 100%;padding: 12px;}

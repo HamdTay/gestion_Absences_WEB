@@ -11,10 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
-    <!-- Icon -->
 
       <!-- Icon -->
-        <link rel="icon" type="image/png" href="<c:url value="resources/images/icon.png" />"/>
+        <link rel="icon" type="image/png" href="<c:url value="/resources/images/icon.png" />"/>
         <title> ENSAH - Absence </title>
         <!-- CSS Bootstrap -->
         <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">       
@@ -65,78 +64,8 @@
         <link href="<c:url value="/resources/cssTeam/Mohcine.css" />" rel="stylesheet">
         <link href="<c:url value="/resources/cssTeam/Amine.css" />" rel="stylesheet">
         <link href="<c:url value="/resources/cssTeam/Redouane.css" />" rel="stylesheet">
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            font-family: 'Cairo', sans-serif;
-            box-sizing: border-box;
-        }
-
-        .form{
-            max-width: 600px;
-            width: 100%;
-            background-color: rgb(183, 185, 163);
-            margin: 30px auto;
-            padding: 30px;
-            box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.12) ;
-            border-radius: 0.5em;
-        }
-        
-        .title{
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: azure;
-            text-transform: uppercase;
-            text-align: center;
-        }
-        .names{
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-
-        form .input_field{
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .input_field_ar{
-            flex-direction: row-reverse;
-        }
-        .niveau,.date{
-            display: flex;
-        }
-        .niveau label{
-            width: 145px;
-            display: flex;
-        }
-        .input___145{
-            width: calc(100% - 145px);
-        }
-        .buttons {
-            display: flex;
-            margin-left: auto;
-            margin-right: auto;
-            width: fit-content;
-        }
-        @media only screen and (max-width: 520px) {
-            .names,form .input_field,.niveau,.date{
-                flex-direction: column;
-            }
-            .input_field label,.input_field input{width:100%!important;}
-            .input___145{
-                width:100%;
-            }
-        }
-        
-    </style>
-    <title>Login</title>
-
+	    <script>
+	    	var contextPathName = "${pageContext.request.contextPath}";
+	    </script>
 </head>
-<body class="bootstrap">
+<body>

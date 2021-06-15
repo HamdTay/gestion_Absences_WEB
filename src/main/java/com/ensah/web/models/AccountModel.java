@@ -8,6 +8,12 @@ public class AccountModel {
 	
 	private String username;
 	
+	@Override
+	public String toString() {
+		return "AccountModel [username=" + username + ", password=" + password + ", roleId=" + roleId + ", personId="
+				+ personId + "]";
+	}
+
 	private String password;
 	
 	private Long roleId;

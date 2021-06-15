@@ -37,6 +37,11 @@ public class LoginController {
 		return "admin/userform";
 
 	}
+	@GetMapping
+	public String showLoginOmar() {
+		return "login";
+	}
+	
 
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,4 +58,34 @@ public class AccountController {
 		return accountReturned;
 	}
 	
+	
+	@PostMapping(value="changePassword/{password}", consumes = { MediaType.ALL_VALUE }, produces="application/json")
+	public AccountModel changePassword(AccountModel account) {
+		
+		System.out.println(account.toString());
+		
+		accountSer.changePassword(account.getPersonId(), account.getPassword());
+		
+		return account;
+		
+	}
+	
+	@GetMapping(value="resetPassword/{idCompte}", consumes = { MediaType.ALL_VALUE }, produces="application/json")
+	public String resetPassword(@PathVariable("idCompte")Long idCompte) {
+		
+		return accountSer.resetPassword(idCompte);
+		
+	}
+	
+	
+	@PostMapping(value="updateAccount", consumes = { MediaType.ALL_VALUE }, produces="application/json")
+	public AccountModel updateAccount(AccountModel acc) {
+		Compte account = new Compte();
+		BeanUtils.copyProperties(acc, account);
+		
+		accountSer.updateAccount(account);
+		
+		System.out.println(acc);
+		return acc;
+	}
 }
