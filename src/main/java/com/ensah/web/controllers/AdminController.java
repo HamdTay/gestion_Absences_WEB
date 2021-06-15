@@ -19,5 +19,9 @@ public class AdminController {
 		
 		return "admin/userform";
 	}
+	@GetMapping("addAccountForm")
+	public String addAccountForm() {
+		return "admin/accountPage";
+	}
 	
 }

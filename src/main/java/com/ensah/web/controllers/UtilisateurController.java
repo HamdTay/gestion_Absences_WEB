@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ import com.ensah.core.bo.Etudiant;
 import com.ensah.core.bo.Utilisateur;
 import com.ensah.core.exceptions.ValidationErrorCustom;
 import com.ensah.core.services.IUtilisateurService;
+import com.ensah.web.models.RoleModel;
 import com.ensah.web.models.TestModel;
 import com.ensah.web.models.UserModel;
 
@@ -51,6 +53,16 @@ public class UtilisateurController {
 		
 		System.out.println("inside userController: "+user.toString());
 		
+		
+		if(user.getCne() == null) {
+			user.setCne("");
+		}
+		if(user.getGrade() == null) {
+			user.setGrade("");
+		}
+		if(user.getSpecialite() == null) {
+			user.setSpecialite("");
+		}
 		
 		//now we will check the role of the user
 		//Administrateur
@@ -141,11 +153,23 @@ public class UtilisateurController {
 		return persons; 
 	}
 	
+	
+	@PostMapping(value="changeRole", consumes = { MediaType.ALL_VALUE }, produces="application/json")
+	public String changeRole(RoleModel Role) {
+		System.out.println(Role.getRoleId());
+		Long role = Role.getRoleId();
+		Long id = Role.getId();
+		UserSer.updatePerson(UserSer.getPersonById(id), role.intValue());
+		
+		return "hello";
+	}
+	
+
 	@DeleteMapping(value="deleteUser/{id}", consumes = { MediaType.ALL_VALUE }, produces="application/json")
 	public String deleteUser(@PathVariable Long id) {
 		
 		System.out.println("id" + id);
-		//UserSer.deletePerson(id[0]);
+		UserSer.deletePerson(id);
 		return "Success";
 	}
 	

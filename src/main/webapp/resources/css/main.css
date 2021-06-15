@@ -781,7 +781,7 @@ header {background-color: #fff;}
     color: white;
     font-weight: 900;right: 0.35rem;
     }
-    .con____x___lr span.invalid-feedback,.container________RSP  span.invalid-feedback,{
+    .con____x___lr span.invalid-feedback,.container________RSP  span.invalid-feedback{
     color: red;
     font-size: 12px;
     font-weight: 100;
@@ -838,7 +838,7 @@ header {background-color: #fff;}
     font-size: 15.7px;
 }
 
-.container________RSP  span.invalid-feedback,{
+.container________RSP  span.invalid-feedback{
     color: red;
     font-size: 12px;
     font-weight: 100;

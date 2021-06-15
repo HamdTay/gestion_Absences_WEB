@@ -76,7 +76,6 @@ html{background-color:#eff3f6;}
 .mt-30{margin-top:30px!important;}
 .mt-45{margin-top:45px!important;}
 *:not(i):not(ul):not(a):not(li):not(.widget-title):not(h3){font-family: monospace;}
-@media (min-width:800px){#annoncesDatatable_length,#modules_length,#courses_length,#history_length{position:relative;top:35px;width: 50%;}.dt-buttons{position:relative;top:30px;width: 50%;}}
 textarea{resize:none!important;}
 .hidden{display:none!important;}
 .shown{display:block!important;}

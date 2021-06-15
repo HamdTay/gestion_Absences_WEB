@@ -1,5 +1,7 @@
 package com.ensah.web.controllers.HTTPErrors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -41,5 +43,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	   }
 	   
+	   @ExceptionHandler(EntityNotFoundException.class)
+	   protected ResponseEntity<Object> handleEntityNotfound(EntityNotFoundException ex){
+	       APIError apiError = new APIError(HttpStatus.FORBIDDEN, ex);
+	       apiError.setMessage(ex.getMessage());
+	       return buildResponseEntity(apiError);
+	   }
+	   
+	   @ExceptionHandler(com.ensah.genericdao.EntityNotFoundException.class)
+	   protected ResponseEntity<Object> handleEntityNotfound(com.ensah.genericdao.EntityNotFoundException ex){
+	       APIError apiError = new APIError(HttpStatus.FORBIDDEN, ex);
+	       apiError.setMessage(ex.getMessage());
+	       return buildResponseEntity(apiError);
+	   }
 	   
 }

@@ -29,8 +29,9 @@
         <!-- jQuery -->
         <script src="<c:url value="/resources/js/jQuery.js" />"></script>
         <!-- DataTable -->
-        <link href="<c:url value="/resources/assets/datatable/datatables.min.css" />" rel="stylesheet">
-        <script src="<c:url value="/resources/assets/datatable/datatables.min.js" />"></script>
+        
+      <link href="<c:url value="/resources/assets/datatable/datatables.min.css" />" rel="stylesheet"> 
+     <script src="<c:url value="/resources/assets/datatable/datatables.min.js" />"></script> 
         <!--Alerts -->      
             <!-- Sweet -->
         <script src="<c:url value="/resources/assets/alerts/sweet.js" />"></script>
@@ -40,7 +41,7 @@
         <link href="<c:url value="/resources/assets/alerts/toastr.css" />" rel="stylesheet">
         <script src="<c:url value="/resources/assets/alerts/toastr.js" />"></script>
          <!-- JS Globally -->
-        <script src="<c:url value="/resources/js/preglobal.js" />"></script>
+        <script src="<c:url value="/resources/js/preglobal.js" />"></script> 
         <!-- Selectize CSS -->
         <link href="<c:url value="/resources/css/selectize.css" />" rel="stylesheet"> 
         <!-- Selectize JS -->
@@ -52,7 +53,12 @@
         <!-- Material Icon CSS -->
         <link rel="stylesheet" href="<c:url value="/resources/css/materialicons.css" />" />       
         <!-- App Pure CSS -->
+        <link rel="stylesheet" href="<c:url value="/resources/css/app.css" />" />       
+        
+        <script src="<c:url value="/resources/js/validation.js" />"></script>
+        
         <!-- Main Pure CSS -->
+        <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />" />       
         <script src="<c:url value="/resources/js/chartjs.js" />"></script>
 		<link href="<c:url value="/resources/cssTeam/Omar.css" />" rel="stylesheet">
         <link href="<c:url value="/resources/cssTeam/Tayeb.css" />" rel="stylesheet">
@@ -133,4 +139,4 @@
     <title>Login</title>
 
 </head>
-<body>
+<body class="bootstrap">

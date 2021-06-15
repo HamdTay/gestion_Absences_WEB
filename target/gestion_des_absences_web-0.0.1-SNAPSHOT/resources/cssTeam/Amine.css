@@ -31,7 +31,8 @@
 			display: block;
 			width: fit-content;
 		}
-		@media (min-width: 900px)
+		@media (min-width: 900px){
 		.m-95-d-50 {
-			width: 100%!important;
+			width: 100%!important;}
 		}
+	@media (min-width: 900px){.dataTables_length{position: relative; top: 35px; width: 50%;}}
