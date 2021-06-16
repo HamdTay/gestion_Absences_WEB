@@ -3,8 +3,13 @@
 
 <jsp:include page="../includes/header.jsp" />
 	<div class="bootstrap">
+	<div id ="createButton" >
+	<button onclick='showCreateFunction()'   class="btn btn-primary">Créer un utilisateur</button></div>
 		<div><div class="w-75 mx-auto p-3 mt-30 mb-10"><h2>Gestion de utilisteurs</h2></div></div>
-	    <div class='ui form w-90 bg-white'>
+	    <div class="ui form w-90 bg-white"  id="formCreateAndUpdate" style="display:none">
+	    
+	    
+	    
 	        <form action="${pageContext.request.contextPath}/admin/createUser" method="POST" >
 	            <div class="row mb-4">
 	                <div class="col-lg-6" >
@@ -99,7 +104,7 @@
 	    
 	    <div class="card w-95 mx-auto p-3 mt-2 mb-10">
 	    
-	    	<table class="table table-striped table-bordered dataTable no-footer"  id="utilisateur-table">
+	    	<table class="table table-striped table-bordered dataTable no-footer" style="width:100%"  id="utilisateur-table">
 	    		<thead class="bg-primary white" style="">
 	    			<tr>
 	    				<th style="width:30px" scope="col">#</th>

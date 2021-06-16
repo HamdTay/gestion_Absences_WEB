@@ -7,20 +7,22 @@
 	margin: 3px;
 }
 </style>
-
+<i class="fas fa-user-unlock"></i> 
+<i class="fa fa-unlock" aria-hidden="true"></i>
+<i class="fa fa-ban" aria-hidden="true"></i>
 	<h1>Gestion des comptes</h1>
 	
 	 <div class="card bootstrap w-95 mx-auto  mt-2 mb-10">
     
-    	<table class="table table-striped table-bordered dataTable no-footer"  id="compte-table">
+    	<table class="table table-striped table-bordered dataTable no-footer"  style="width:100%" id="compte-table">
     		<thead class="bg-primary white" style="">
     			<tr>
     				<th style="width:30px" scope="col">#</th>
     				<th scope="col">ID</th>
+    				<th scope="col">Login</th>
     				<th scope="col">Role</th>
-    				<th scope="col">Nom</th>
     				<th scope="col">Email</th>
-
+    				<th scope="col">Status de Verrouillage</th>
     			</tr>
     		</thead>
     	</table>
@@ -49,14 +51,28 @@ $(function(){
 			{"data": "login"},
 			{"data": "nomRole"},
 			{"data": "email"},
+			{"data": null, "render":function(data){
+				if(data.accountNonLocked == true){
+					return '<i class="fas fa-user-lock"></i> ';	
+				}
+				return '<i class="fa fa-unlock" aria-hidden="true"></i>';
+			}}
 		],
-		"responsive": true,
+	    "createdRow": function ( row, data, index ) {
+            if(data.enabled == true){
+                $('td', row).css({'background-color':'#accc60', 'color':'white'});
+            }else if(data.enabled == false){
+                $('td', row).css({'background-color':'#e62525', 'color':'white'});
+            }
+        },
+		responsive: true,
 		dom:'Blfrtip',
 		buttons:[
 			{
 				text: 'actualiser',
 				action : (e, dt, node, config)=>{
-					table.ajax.reload();
+					console.log(tableAccount.data())
+					tableAccount.ajax.reload();
 				}
 			},
 			{
@@ -87,7 +103,7 @@ $(function(){
 			
 						
 					}else{
-						toastr["error"]("Vous doit supprimer au moins un Utilisateur!");
+						toastr["error"]("Vous doit supprimer au moins une compte!");
 					}
 					
 					console.log('delete');
@@ -137,7 +153,7 @@ $(function(){
 			
 						
 					}else{
-						toastr["error"]("Vous doit sélectionner au moins un Utilisateur!");
+						toastr["error"]("Vous doit sélectionner au moins une compte!");
 					}
 				}
 			},
@@ -160,20 +176,63 @@ $(function(){
 			
 						
 					}else{
-						toastr["error"]("Vous doit sélectionner au moins un Utilisateur!");
+						toastr["error"]("Vous doit sélectionner au moins une compte!");
 					}
 				}
 			},
 			{
-				text: 'Historique_Action',
+				text: 'Historique_Activité',
 				action : (e, dt, node, config)=>{
-					console.log('update');
+					const count = tableAccount.rows({selected: true}).count();
+
+					if(count != 0){
+						
+						let data = tableAccount.rows({selected: true}).data();
+						const len = data.length;
+						if(len > 2){
+							toastr["error"]("Vous doit sélectionner une seule compte!");
+						}else if(len == 1){
+							showHistory(data[0].idCompte, "all")
+						}
+			
+						
+					}else{
+						toastr["error"]("Vous doit sélectionner au moins une compte !");
+					}
 				}
 			},
 			{
 				text: 'Historique_Connexion',
 				action : (e, dt, node, config)=>{
-					console.log('update');
+					const count = tableAccount.rows({selected: true}).count();
+
+					if(count != 0){
+						
+						let data = tableAccount.rows({selected: true}).data();
+						const len = data.length;
+						if(len > 2){
+							toastr["error"]("Vous doit sélectionner une seule compte!");
+						}else if(len == 1){
+							showHistory(data[0].idCompte, "login")
+						}
+			
+						
+					}else{
+						toastr["error"]("Vous doit sélectionner au moins une compte !");
+					}
+				}
+			},
+			{
+				text: 'Activer/Désactiver',
+				action : (e, dt, node, config)=>{
+					const count = tableAccount.rows({selected: true}).count();
+
+					if(count != 0){
+						let data = tableAccount.rows({selected: true}).data();
+						ActiverDesactiverAccounts(data)
+					}else{
+						toastr["error"]("Vous doit sélectionner au moins un Utilisateur!");
+					}
 				}
 			}
 			],     
@@ -309,10 +368,7 @@ function updateAccount(data){
 				let role = $('#Role_Change').val();
 				let login = $('#username').val()
 				
-				if(!pwd){
-					toastr["error"]("mot de passe est vide");
-					return;
-				}
+
 				if(!role){
 					toastr["error"]("role est vide");
 					return;
@@ -347,6 +403,7 @@ function updateAccount(data){
 					},
 					success: (response)=>{
 	   					swal("succès!", "Le mot de passe est modifié avec succés!");
+	   					tableAccount.ajax.reload();
 					}
 					
 					
@@ -357,11 +414,119 @@ function updateAccount(data){
 	    	$('.bootbox').wrap('<div class="bootstrap"></div>');
 	    	$(".bootbox-close-button.close").css("margin","0px").css("padding","0px");
 	   		$(".bootbox .modal-dialog").addClass("mx-auto").css("width","400px");
-	    });
-	
+	    });	
 	
 }
 
+function ActiverDesactiverAccounts(data){
+	
+	let j = 0;
+	let err = false;
+    for(var i=0;i<data.length;i++){
+        let url = "";
+        if(data[i].enabled == true){
+        	url += contextPathName+"/admin/DeactivateAccount/";
+        }else{
+        	url+=contextPathName+"/admin/ActivateAccount/";
+        }
+        url+=data[i].login;
+        let csrf = $("#csrf").val();
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': csrf
+            },
+            url: url,
+            type: "GET",
+            async:false,
+            dataType: 'json',
+            success: function(response){
+                j++;
+            },
+            error: function(xhr, status ){
+            	if(xhr.statusText == 'parsererror' && xhr.status == 200){
+            		error = false;
+            	}
+                if(xhr.status === "FORBIDDEN"){
+             		 err = true;
+             		 toastr["error"](xhr.message);	       	
+                }
+            },
+            complete:function(){
+
+                tableAccount.ajax.reload();
+            }
+        });
+      }
+    if(!err) 
+        swal("Activé/Désactivé!", {icon: "success"});
+    else
+        toastr["error"]("Something went wrong!");
+	
+}
+
+function showHistory(id, type){
+	let url = ""
+	let title = ""
+	if(type=="login"){
+		url += "/LogLogin/"+id;
+		title += "Historique des connexions" 
+	}else if(type =="all"){
+		title += "Historique des activités"
+		url +="/LogActivity/"+id;
+	}
+	$.ajax({
+		type: "GET",
+		headers: {
+			'X-CSRF-TOKEN': '${_csrf.token}',
+		},
+		dataType: "json",
+		async:false,
+		url: contextPathName+"/admin"+url,
+		error: (xhr)=>{
+			  if( xhr.status === 403 ) {
+					var errors = $.parseJSON(xhr.responseText);
+					swal("Error!", errors.message, "error");
+			  }else{
+		      		swal("Error!", "Something went wrong!", "error"); 
+			  }
+		},
+		success: (response)=>{
+			console.log(response)
+				const data = response;
+				let affich = "<div style='overflow:scroll;height:500px'><table class='table table-striped table-bordered dataTable no-footer'><thead><tr><th>Date</th><th>Adresse IP</th><th>Criticité</th><th>type</th></tr></thead><tbody></div>" 
+				data.forEach((data, key)=>{
+					
+					affich += "<tr><td>" + data.dateHeure+"</td><td>"+data.adresseIP+"</td><td>"+data.criticite+"</td><td>"+data.typeEvenement+"</td></tr>"
+					console.log(key)
+				})
+// 				$.each(data, function(key ,value){
+// 					console.log(value)
+// 				})
+				var dialog = bootbox.dialog({
+					title: title,
+					message: affich,
+					size: 'medium',
+					onEscape: true,
+					backdrop: true,
+			        buttons: {
+			        	confirm: {
+			                label: 'Fermer',
+			                className: 'btn-primary'
+			            },
+			        }
+				}).on('shown.bs.modal', function(e){
+					
+					
+				}).init(()=>{
+			    	$('.bootbox').wrap('<div class="bootstrap"></div>');
+			    	$(".bootbox-close-button.close").css("margin","0px").css("padding","0px");
+			   		$(".bootbox .modal-dialog").addClass("mx-auto").css({"width":"500px"});
+			    });	
+		}
+	
+	
+})
+}
 
 </script>
 

@@ -1,5 +1,23 @@
 
     
+    
+    function updateUser(data){
+    	$("#formCreateAndUpdate").slideDown(3000, function(){
+    	
+    		$("#nom").val(data.nom)
+    		$("#prenom").val(data.prenom)
+    	
+    	})
+    }
+    
+    function showCreateFunction(){
+    	$("#formCreateAndUpdate").slideDown()
+    	$("#formCreate")
+    	$("#formCreateAndUpdate")
+    	console.log('FUCKKK')
+    }
+    
+    
     function createAccount(idUser){
     	
     	changeRole(idUser)
@@ -9,6 +27,7 @@
     
     //Changer le mot de passe and role later in account table
     function changeRole(id){
+    	table.ajax.reload();
         var urlInput = "<select class='form-control' id='Role_Change'><option value='' ></option><option value='1' >Adminstrateur</option><option value='2' >Enseignant</option><option value='3' >Etudiant</option>";
         urlInput+="</select>";
         var dialog = bootbox.dialog({ 
@@ -227,7 +246,22 @@
 					{
 						text: 'Mise à jour',
 						action : (e, dt, node, config)=>{
-							console.log('update');
+							const count = table.rows({selected: true}).count();
+							if(count != 0){
+								
+								let data = table.rows({selected: true}).data();
+								
+								const len = data.length;
+								if(len > 1){
+									toastr["error"]("Vous doit séléctionner un utilisateur!");
+								}
+								else{
+									updateUser(data[0]);	
+								}        	                	
+								
+							}else{
+								toastr["error"]("Vous doit séléctionner au moins un Utilisateur!");
+							}
 						}
 					},
 					{
@@ -259,7 +293,7 @@
 						}
 					},
 					{
-						text: 'Changer role',
+						text: 'recherche spécifique',
 						action : (e, dt, node, config)=>{
 							
 							const count = table.rows({selected: true}).count();
@@ -272,7 +306,7 @@
 									toastr["error"]("Vous doit changer le role d'un seul utilisateur!");
 								}
 								else if(len == 1){
-									changeRole(data[0].idUtilisateur);	
+									rechercheSepecifique(data[0].idUtilisateur);	
 								}        	                	
 								
 							}else{
